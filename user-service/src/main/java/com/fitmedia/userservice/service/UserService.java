@@ -31,6 +31,10 @@ public class UserService {
         return userObjToResponse(user, response);
     }
 
+    public Boolean existByUserId(Long userId) {
+        return userRepository.existsById(userId);
+    }
+
     private User requestToUser(RegisterRequest request, User user){
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
@@ -48,6 +52,5 @@ public class UserService {
         response.setUpdatedAt(user.getUpdatedAt());
         return response;
     }
-
 
 }

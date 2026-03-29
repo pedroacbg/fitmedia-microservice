@@ -15,14 +15,19 @@ import java.util.stream.Collectors;
 public class ActivityService {
 
     private final ActivityRepository activityRepository;
+    private final UserValidationService userValidationService;
 
     public ActivityResponse trackActivity(ActivityRequest request) {
+        boolean isValidUser = userValidationService.validadeUser(request.getUserId());
+        if(!isValidUser){
+            throw new RuntimeException("Invalid User: " + request.getUserId());
+        }
         Activity activity =  requestToEntity(request);
         Activity savedActivity = activityRepository.save(activity);
         return entityToResponse(savedActivity);
     }
 
-    public List<ActivityResponse> getUserActivities(String userId) {
+    public List<ActivityResponse> getUserActivities(Long userId) {
         List<Activity> activities = activityRepository.findByUserId(userId);
         return activities.stream().map(this::entityToResponse).collect(Collectors.toList());
     }

@@ -19,4 +19,4 @@ eureka:
     hostname: localhost
     non-secure-port: 8082
     prefer-ip-address: false
-    instance-id: ${spring.application.name}:localhost:${server.port}
+    instance-id: localhost:${spring.application.name}:${server.port}

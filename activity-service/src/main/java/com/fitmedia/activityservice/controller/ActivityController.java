@@ -22,7 +22,7 @@ public class ActivityController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ActivityResponse>> getUserActivities(@RequestHeader(name = "X-User-ID") String userId){
+    public ResponseEntity<List<ActivityResponse>> getUserActivities(@RequestHeader(name = "X-User-ID") Long userId){
         return ResponseEntity.ok(activityService.getUserActivities(userId));
     }
 

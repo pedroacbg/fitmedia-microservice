@@ -12,7 +12,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class ActivityRequest {
 
-    private String userId;
+    private Long userId;
     private ActivityType type;
     private Integer duration;
     private Integer caloriesBurned;
