@@ -7,6 +7,9 @@ import com.fitmedia.activityservice.repository.ActivityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ActivityService {
@@ -17,6 +20,15 @@ public class ActivityService {
         Activity activity =  requestToEntity(request);
         Activity savedActivity = activityRepository.save(activity);
         return entityToResponse(savedActivity);
+    }
+
+    public List<ActivityResponse> getUserActivities(String userId) {
+        List<Activity> activities = activityRepository.findByUserId(userId);
+        return activities.stream().map(this::entityToResponse).collect(Collectors.toList());
+    }
+
+    public ActivityResponse getActivityById(Long activityId) {
+        return activityRepository.findById(activityId).map(this::entityToResponse).orElseThrow(() -> new RuntimeException("Activity not found"));
     }
 
     private Activity requestToEntity(ActivityRequest request){
@@ -43,5 +55,4 @@ public class ActivityService {
         response.setUpdatedAt(activity.getUpdatedAt());
         return response;
     }
-
 }
