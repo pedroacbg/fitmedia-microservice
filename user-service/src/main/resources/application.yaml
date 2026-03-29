@@ -11,3 +11,12 @@ spring:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    non-secure-port: 8081
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:localhost:${server.port}
