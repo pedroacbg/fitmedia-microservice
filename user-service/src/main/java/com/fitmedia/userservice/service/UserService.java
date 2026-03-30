@@ -5,10 +5,12 @@ import com.fitmedia.userservice.dto.UserResponse;
 import com.fitmedia.userservice.model.User;
 import com.fitmedia.userservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
@@ -32,6 +34,7 @@ public class UserService {
     }
 
     public Boolean existByUserId(Long userId) {
+        log.info("Calling User Validation API for userId: {}", userId);
         return userRepository.existsById(userId);
     }
 
