@@ -1,9 +1,6 @@
 package com.fitmedia.aiservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,9 +20,17 @@ public class Recommendation {
     private Long activityId;
     private Long userId;
     private String activityType;
+
+    @Column(length = 1500)
     private String recommendation;
+
+    @Column(length = 1500)
     private List<String> improvements;
+
+    @Column(length = 1500)
     private List<String> suggestions;
+
+    @Column(length = 1500)
     private List<String> safety;
 
     @CreationTimestamp

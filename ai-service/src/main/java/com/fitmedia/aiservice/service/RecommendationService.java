@@ -33,6 +33,7 @@ public class RecommendationService {
         response.setActivityType(entity.getActivityType());
         response.setRecommendation(entity.getRecommendation());
         response.setImprovements(entity.getImprovements());
+        response.setSuggestions(entity.getSuggestions());
         response.setSafety(entity.getSafety());
         response.setCreatedAt(entity.getCreatedAt());
         return response;
