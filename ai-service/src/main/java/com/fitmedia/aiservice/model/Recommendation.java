@@ -21,16 +21,16 @@ public class Recommendation {
     private Long userId;
     private String activityType;
 
-    @Column(length = 1500)
+    @Column(length = 3000)
     private String recommendation;
 
-    @Column(length = 1500)
+    @Column(length = 3000)
     private List<String> improvements;
 
-    @Column(length = 1500)
+    @Column(length = 3000)
     private List<String> suggestions;
 
-    @Column(length = 1500)
+    @Column(length = 3000)
     private List<String> safety;
 
     @CreationTimestamp
