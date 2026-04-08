@@ -12,7 +12,7 @@ public class RecommendationResponse {
 
     private Long id;
     private Long activityId;
-    private Long userId;
+    private String userId;
     private String activityType;
     private String recommendation;
     private List<String> improvements;

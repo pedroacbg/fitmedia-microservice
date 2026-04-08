@@ -46,7 +46,7 @@ public class ActivityService {
         return entityToResponse(savedActivity);
     }
 
-    public List<ActivityResponse> getUserActivities(Long userId) {
+    public List<ActivityResponse> getUserActivities(String userId) {
         List<Activity> activities = activityRepository.findByUserId(userId);
         return activities.stream().map(this::entityToResponse).collect(Collectors.toList());
     }

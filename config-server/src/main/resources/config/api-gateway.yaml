@@ -1,6 +1,11 @@
 server:
   port: 8762
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8181/realms/fitmedia-oauth2/protocol/openid-connect/certs
   cloud:
     gateway:
       routes:

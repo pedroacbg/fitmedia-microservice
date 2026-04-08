@@ -15,7 +15,7 @@ public class RecommendationService {
 
     private final RecommendationRepository recommendationRepository;
 
-    public List<RecommendationResponse> getUserRecommendation(Long userId) {
+    public List<RecommendationResponse> getUserRecommendation(String userId) {
         return recommendationRepository.findByUserId(userId).stream().map(this::entityToResponse).collect(Collectors.toList());
     }
 

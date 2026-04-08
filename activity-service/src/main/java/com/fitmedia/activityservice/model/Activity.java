@@ -20,7 +20,7 @@ public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
+    private String userId;
 
     @Enumerated(EnumType.STRING)
     private ActivityType type;

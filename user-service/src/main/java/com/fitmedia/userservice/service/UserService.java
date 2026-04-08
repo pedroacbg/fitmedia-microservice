@@ -17,7 +17,10 @@ public class UserService {
 
     public UserResponse registerUser(RegisterRequest request){
         if(userRepository.existsByEmail(request.getEmail())){
-            throw new RuntimeException("Email already exists");
+            User existingUser = userRepository.findByEmail(request.getEmail());
+            existingUser = requestToUser(request, existingUser);
+            UserResponse userResponse = new UserResponse();
+            return userObjToResponse(existingUser, userResponse);
         }
 
         User user = new User();
@@ -27,19 +30,20 @@ public class UserService {
         return userObjToResponse(savedUser, response);
     }
 
-    public UserResponse getUserProfile(Long userId){
+    public UserResponse getUserProfile(String userId){
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         UserResponse response = new UserResponse();
         return userObjToResponse(user, response);
     }
 
-    public Boolean existByUserId(Long userId) {
+    public Boolean existByUserId(String userId) {
         log.info("Calling User Validation API for userId: {}", userId);
-        return userRepository.existsById(userId);
+        return userRepository.existsByKeycloakId(userId);
     }
 
     private User requestToUser(RegisterRequest request, User user){
         user.setEmail(request.getEmail());
+        user.setKeycloakId(request.getKeycloakId());
         user.setPassword(request.getPassword());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
@@ -49,11 +53,11 @@ public class UserService {
     private UserResponse userObjToResponse(User user, UserResponse response){
         response.setId(user.getId());
         response.setEmail(user.getEmail());
+        response.setKeycloakId(user.getKeycloakId());
         response.setFirstName(user.getFirstName());
         response.setLastName(user.getLastName());
         response.setCreatedAt(user.getCreatedAt());
         response.setUpdatedAt(user.getUpdatedAt());
         return response;
     }
-
 }

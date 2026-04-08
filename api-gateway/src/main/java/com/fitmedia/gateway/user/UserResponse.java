@@ -1,4 +1,4 @@
-package com.fitmedia.userservice.dto;
+package com.fitmedia.gateway.user;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
